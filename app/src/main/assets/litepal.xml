@@ -1,0 +1,11 @@
+<litepal>
+
+    <dbname value="time" />
+
+    <version value="1" />
+
+    <list>
+        <mapping class="" />
+    </list>
+
+</litepal>
