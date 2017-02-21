@@ -2,10 +2,11 @@
 
     <dbname value="time" />
 
-    <version value="1" />
+    <version value="2" />
 
     <list>
-        <mapping class="" />
+        <mapping class="com.time.time.bean.Event" />
+        <mapping class="com.time.time.bean.DailyEvent" />
     </list>
 
 </litepal>
