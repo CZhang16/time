@@ -1,15 +1,19 @@
 package com.time.time.view;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.time.time.BaseActivity;
 import com.time.time.R;
 import com.time.time.bean.DailyEvent;
 import com.time.time.bean.Event;
-import com.time.time.presenter.DialyEventPresenter;
+import com.time.time.presenter.DailyEventPresenter;
 import com.time.time.presenter.IDailyEventPresenter;
 import com.time.time.util.DateUtil;
 
@@ -23,30 +27,47 @@ public class DailyEventActivity extends BaseActivity implements IDailyEventView 
 
     private ListView mDailyEventList;
 
-    private List<Event> mDataList;
-
     private DailyEvent mDailyEvent;
 
     private ArrayAdapter<Event> mAdapter;
+
+    private Button mAddDailyEvent;
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (!mDailyEventPresenter.loadDailyEvent(DateUtil.getNowTime("day"))) {
+            Toast.makeText(this, "今天没有记录，创建记录...", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(DailyEventActivity.this, DailyEventEditActivity.class);
+            startActivity(intent);
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_daily_event);
 
-        mDailyEventPresenter = new DialyEventPresenter(this);
-        mDailyEventPresenter.loadDailyEvent(DateUtil.getNowTime("day"));
+        mDailyEventPresenter = new DailyEventPresenter(this);
+
+
 
         mDateText = (TextView) findViewById(R.id.date_text);
         mDailyEventList = (ListView) findViewById(R.id.daily_event_list);
+        mAddDailyEvent = (Button) findViewById(R.id.add_daily_event);
 
-        mAdapter = new ArrayAdapter<Event>(this, android.R.layout.simple_list_item_1, mDataList);
-        mDailyEventList.setAdapter(mAdapter);
+        mAddDailyEvent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DailyEventActivity.this, DailyEventEditActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+
     }
 
-    public void notifyDataList() {
-        mDataList = mDailyEvent.getEventList();
-    }
 
     @Override
     public void setDate(String date) {
@@ -56,6 +77,11 @@ public class DailyEventActivity extends BaseActivity implements IDailyEventView 
     @Override
     public void setDailyEvent(DailyEvent dailyEvent) {
         mDailyEvent = dailyEvent;
-        setDate(mDailyEvent.getDate());
+    }
+
+    @Override
+    public void setDailyEventList(List<Event> eventList) {
+        mAdapter = new ArrayAdapter<Event>(this, android.R.layout.simple_list_item_1, eventList);
+        mDailyEventList.setAdapter(mAdapter);
     }
 }

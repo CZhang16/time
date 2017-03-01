@@ -11,8 +11,14 @@
     <TextView
         android:id="@+id/date_text"
         android:gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"/>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/add_daily_event"
+        android:text="添加日程"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
     <ListView
         android:id="@+id/daily_event_list"

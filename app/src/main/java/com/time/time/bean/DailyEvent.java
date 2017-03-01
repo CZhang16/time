@@ -2,8 +2,6 @@ package com.time.time.bean;
 
 import org.litepal.crud.DataSupport;
 
-import java.util.List;
-
 /**
  * Created by ZC on 2017/2/20.
  */
@@ -14,7 +12,7 @@ public class DailyEvent extends DataSupport {
 
     private String date;
 
-    private List<Event> eventList;
+    private String eventList;
 
     public String getDate() {
         return date;
@@ -24,11 +22,11 @@ public class DailyEvent extends DataSupport {
         this.date = date;
     }
 
-    public List<Event> getEventList() {
+    public String getEventList() {
         return eventList;
     }
 
-    public void setEventList(List<Event> eventList) {
+    public void setEventList(String eventList) {
         this.eventList = eventList;
     }
 

@@ -24,7 +24,7 @@ public class Event extends DataSupport {
 
     @Override
     public String toString() {
-        return eventName + "\n" + info;
+        return eventName + "\n开始时间：" + startTime + "  时长：" + minuteSpend;
     }
 
     public boolean isCanDelete() {

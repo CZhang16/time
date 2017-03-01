@@ -8,5 +8,5 @@ public interface IDailyEventPresenter {
 
     void saveDailyEvent();
 
-    void loadDailyEvent(String date);
+    boolean loadDailyEvent(String date);
 }

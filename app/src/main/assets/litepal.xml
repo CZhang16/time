@@ -2,7 +2,7 @@
 
     <dbname value="time" />
 
-    <version value="2" />
+    <version value="1" />
 
     <list>
         <mapping class="com.time.time.bean.Event" />

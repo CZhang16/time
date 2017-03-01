@@ -36,15 +36,21 @@
             android:orientation="vertical"
             android:layout_weight="1">
 
-            <TextView
+            <EditText
                 android:id="@+id/time_spend"
                 android:hint="时长"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
-            <TextView
+            <EditText
                 android:id="@+id/time_start"
                 android:hint="开始时间"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <Button
+                android:id="@+id/add_event"
+                android:text="添加事件"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
